@@ -14,10 +14,16 @@ const assignmentSchema = mongoose.Schema(
     duration: {
       type: Number,
     },
+    expireAt: {
+      type: Date,
+      index: {expireAfterSeconds: 0}
+    }
   },
   { timestamps: true }
 );
 
 const Assignment = mongoose.model("Assignment", assignmentSchema);
+Assignment.ensureIndexes(function(err){
+});
 
 module.exports = Assignment
